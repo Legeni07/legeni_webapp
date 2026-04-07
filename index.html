@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog LEGENI - KEYCE Informatique & Intelligence Artificielle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-orange: #FF8C00;
+            --primary-blue: #003D7A;
+            --light-gray: #F5F5F5;
+            --dark-gray: #333333;
+            --border-color: #E0E0E0;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: #FFFFFF;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #004B8F 100%);
+            color: white;
+            padding: 20px 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-section img {
+            height: 60px;
+            width: auto;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .logo-text p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-orange);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-orange) 100%);
+            color: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            opacity: 0.95;
+        }
+
+        /* Search Bar */
+        .search-section {
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-bar {
+            display: flex;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            font-size: 16px;
+        }
+
+        .search-bar button {
+            padding: 12px 25px;
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-bar button:hover {
+            background-color: #FF7A00;
+        }
+
+        /* Main Content Layout */
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 30px;
+        }
+
+        /* Articles Grid */
+        .articles-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .article-category {
+            display: inline-block;
+            background-color: var(--primary-orange);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .article-content h3 {
+            font-size: 18px;
+            margin: 15px 0;
+            color: var(--primary-blue);
+            line-height: 1.4;
+        }
+
+        .article-content p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .read-more:hover {
+            color: var(--primary-blue);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .sidebar-widget {
+            background: var(--light-gray);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-orange);
+        }
+
+        .sidebar-widget h4 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .sidebar-widget ul {
+            list-style: none;
+        }
+
+        .sidebar-widget li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sidebar-widget li:last-child {
+            border-bottom: none;
+        }
+
+        .sidebar-widget a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-widget a:hover {
+            color: var(--primary-orange);
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .newsletter-form button {
+            padding: 10px;
+            background-color: var(--primary-orange);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background-color: #FF7A00;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
+        }
+
+        .pagination a, .pagination span {
+            padding: 10px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover {
+            background-color: var(--primary-orange);
+            color: white;
+            border-color: var(--primary-orange);
+        }
+
+        .pagination .active {
+            background-color: var(--primary-blue);
+            color: white;
+            border-color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h5 {
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #DDD;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h2 {
+                font-size: 24px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .articles-section {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-section {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="keyce-logo.png" alt="Logo KEYCE">
+                <div class="logo-text">
+                    <h1>LEGENI Blog</h1>
+                    <p>Informatique & Intelligence Artificielle</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#articles">Articles</a></li>
+                    <li><a href="#categories">Catégories</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Bienvenue sur le Blog LEGENI</h2>
+            <p>Découvrez les dernières actualités, tutoriels et innovations en informatique et intelligence artificielle</p>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="search-section">
+            <div class="search-bar">
+                <input type="text" placeholder="Rechercher un article...">
+                <button>Rechercher</button>
+            </div>
+        </div>
+
+        <!-- Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- Articles Section -->
+            <section class="articles-section" id="articles">
+                <!-- Article 1 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 1</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>12 Avril 2026</span>
+                            <span class="article-category">IA</span>
+                        </div>
+                        <h3>Les Dernières Avancées en Intelligence Artificielle</h3>
+                        <p>Explorez les innovations les plus récentes en matière d'IA et découvrez comment elles transforment le monde de l'informatique...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+
+                <!-- Article 2 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 2</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>10 Avril 2026</span>
+                            <span class="article-category">Tutoriel</span>
+                        </div>
+                        <h3>Guide Complet du Machine Learning</h3>
+                        <p>Un guide pratique pour débuter avec le machine learning, des concepts fondamentaux aux applications concrètes...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+
+                <!-- Article 3 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 3</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>8 Avril 2026</span>
+                            <span class="article-category">Actualité</span>
+                        </div>
+                        <h3>Cybersécurité : Les Enjeux de 2026</h3>
+                        <p>Découvrez les principaux défis en matière de cybersécurité et les meilleures pratiques pour protéger vos données...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+
+                <!-- Article 4 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 4</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>5 Avril 2026</span>
+                            <span class="article-category">Développement</span>
+                        </div>
+                        <h3>Web3 et Blockchain : L'Avenir du Web</h3>
+                        <p>Comprendre les technologies blockchain et leur impact sur l'évolution du web et de l'économie numérique...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+
+                <!-- Article 5 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 5</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>3 Avril 2026</span>
+                            <span class="article-category">Cloud</span>
+                        </div>
+                        <h3>Migration Cloud : Stratégies et Bonnes Pratiques</h3>
+                        <p>Apprenez comment migrer vos applications vers le cloud en minimisant les risques et en optimisant les coûts...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+
+                <!-- Article 6 -->
+                <article class="article-card">
+                    <div class="article-image">Image Article 6</div>
+                    <div class="article-content">
+                        <div class="article-meta">
+                            <span>1 Avril 2026</span>
+                            <span class="article-category">DevOps</span>
+                        </div>
+                        <h3>Automatisation DevOps : Optimiser Votre Pipeline</h3>
+                        <p>Découvrez comment mettre en place une stratégie DevOps efficace pour accélérer vos déploiements...</p>
+                        <a href="#" class="read-more">Lire la suite →</a>
+                    </div>
+                </article>
+            </section>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <!-- Categories Widget -->
+                <div class="sidebar-widget">
+                    <h4>📂 Catégories</h4>
+                    <ul>
+                        <li><a href="#ia">Intelligence Artificielle</a></li>
+                        <li><a href="#dev">Développement Web</a></li>
+                        <li><a href="#cloud">Cloud Computing</a></li>
+                        <li><a href="#cyber">Cybersécurité</a></li>
+                        <li><a href="#devops">DevOps</a></li>
+                        <li><a href="#data">Data Science</a></li>
+                    </ul>
+                </div>
+
+                <!-- Recent Articles Widget -->
+                <div class="sidebar-widget">
+                    <h4>📰 Articles Récents</h4>
+                    <ul>
+                        <li><a href="#">Les Dernières Avancées en IA</a></li>
+                        <li><a href="#">Guide du Machine Learning</a></li>
+                        <li><a href="#">Cybersécurité 2026</a></li>
+                        <li><a href="#">Web3 et Blockchain</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Widget -->
+                <div class="sidebar-widget">
+                    <h4>📧 Newsletter</h4>
+                    <p style="font-size: 14px; margin-bottom: 15px;">Recevez nos derniers articles directement dans votre boîte mail.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+
+                <!-- About Widget -->
+                <div class="sidebar-widget">
+                    <h4>ℹ️ À Propos</h4>
+                    <p style="font-size: 14px;">Le blog LEGENI de KEYCE vous propose des contenus de qualité sur l'informatique et l'intelligence artificielle, rédigés par des experts du domaine.</p>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <span class="active">1</span>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+            <a href="#">Suivant →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h5>À Propos</h5>
+                <ul>
+                    <li><a href="#">À Propos de KEYCE</a></li>
+                    <li><a href="#">Notre Mission</a></li>
+                    <li><a href="#">Notre Équipe</a></li>
+                    <li><a href="#">Carrières</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Ressources</h5>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tutoriels</a></li>
+                    <li><a href="#">Webinaires</a></li>
+                    <li><a href="#">Téléchargements</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Communauté</h5>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h5>Légal</h5>
+                <ul>
+                    <li><a href="#">Politique de Confidentialité</a></li>
+                    <li><a href="#">Conditions d'Utilisation</a></li>
+                    <li><a href="#">Mentions Légales</a></li>
+                    <li><a href="#">Cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 LEGENI - KEYCE Informatique & Intelligence Artificielle. Tous droits réservés.</p>
+        </div>
+    </footer>
+</body>
+</html>
